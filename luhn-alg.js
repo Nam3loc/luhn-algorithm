@@ -1,23 +1,40 @@
 function validCard(num) {
+    const cardNum = num.toString().split('').map(Number);
+    console.log(cardNum);
     const cardNumArr = [];
 
-    for(let i = 0; i < num.length; i++) {
+    for(let i = 0; i < cardNum.length; i++) {
+        console.log('i am in the for loop')
         if(i % 2 == 0) {
-            if(num[i] * 2 < 10) {
-                cardNumArr.push(num[i] * 2);
+            if(cardNum[i] * 2 < 10) {
+                cardNumArr.push(cardNum[i] * 2);
+                console.log('first log', cardNumArr);
             } else {
-                cardNumArr.push(num[i] * 2 - 9);
+                cardNumArr.push(cardNum[i] * 2 - 9);
+                console.log('second log', cardNumArr);
             }
         } else {
-            cardNumArr.push(parseInt(num[i], 10));
+            cardNumArr.push(parseInt(cardNum[i], 10));
+            console.log('third log', cardNumArr);
         }
     }
-    
-    return cardNumArr.reduce((a, b) => a + b) % 10 === 0 ? true : false;
+    let sum = cardNumArr.reduce((a, b) => a + b, 0);
+    console.log('I am the sum', sum)
+
+    if(sum % 10 === 0) {
+        console.log('i am in the return true statement', sum)
+        return true;
+    } else {
+        console.log('i am in the return false statement', sum)
+        return false;
+    }
 }
 
 
-
+validCard(1234567890123456); //should be false
+// validCard(4408041234567893); //should be true
+// validCard(38520000023237); //should be true
+// validCard(4222222222222); //should be true
 
 
 
@@ -56,8 +73,3 @@ function validCard(num) {
 //         return false;
 //     }
 // }
-
-// validCard(1234567890123456); //should be false
-validCard(4408041234567893); //should be true
-// validCard(38520000023237); //should be true
-// validCard(4222222222222); //should be true
