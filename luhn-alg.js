@@ -1,10 +1,33 @@
-
-
 function validCard(num) {
-    num = num.toString().split(' ').join('');
-    console.log(typeof num)
-    parseInt(num)
-    console.log(typeof num)}
+    const cardNumArr = [];
+
+    for(let i = 0; i < num.length; i++) {
+        if(i % 2 == 0) {
+            if(num[i] * 2 < 10) {
+                cardNumArr.push(num[i] * 2);
+            } else {
+                cardNumArr.push(num[i] * 2 - 9);
+            }
+        } else {
+            cardNumArr.push(parseInt(num[i], 10));
+        }
+    }
+    
+    return cardNumArr.reduce((a, b) => a + b) % 10 === 0 ? true : false;
+}
+
+
+
+
+
+
+
+
+// function validCard(num) {
+//     num = num.toString().split(' ').join('');
+//     console.log(typeof num)
+//     Number(num)
+//     console.log(typeof num)}
     // const cardNumArr = [];
 
 
@@ -34,7 +57,7 @@ function validCard(num) {
 //     }
 // }
 
-validCard(1234567890123456); //should be false
-// validCard(4408041234567893); //should be true
+// validCard(1234567890123456); //should be false
+validCard(4408041234567893); //should be true
 // validCard(38520000023237); //should be true
 // validCard(4222222222222); //should be true
